@@ -8,13 +8,15 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class    ApiApplication {
+public class ApiApplication {
     @Autowired
     TwilioConfig twilioConfig;
+
     @PostConstruct
-    public void TwilioInit(){
-       Twilio.init(twilioConfig.getAccountSid(),twilioConfig.getAuthToken());
+    public void TwilioInit() {
+        Twilio.init(twilioConfig.getAccountSid(), twilioConfig.getAuthToken());
     }
+
     public static void main(String[] args) {
         SpringApplication.run(ApiApplication.class, args);
     }
