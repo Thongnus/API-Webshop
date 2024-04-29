@@ -6,6 +6,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 public interface Product_Service {
@@ -13,7 +14,7 @@ public interface Product_Service {
     Optional<Product> getProductbyId(int id);
     ArrayList<Product> getAllProducts();
     Product updateProduct(int id, Product newProduct);
-
+    public List<Product> search(String keyword, Category category);
     void deleteProduct(int id);
     Optional<Product> findbyId(int id);
     Page<Product> getAllbyCategory(Category category,Pageable pageable);

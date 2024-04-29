@@ -3,6 +3,8 @@ package com.example.api.RestController.Admin;
 import com.example.api.Entity.Category;
 import com.example.api.Entity.Order;
 import com.example.api.Entity.Product;
+import com.example.api.Service.Category_Service;
+import com.example.api.Service.Product_Service;
 import com.example.api.Service.Serviceimpl.Category_impl;
 import com.example.api.Service.Serviceimpl.Product_impl;
 import lombok.extern.slf4j.Slf4j;
@@ -27,9 +29,9 @@ import java.util.Optional;
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class quanlyproductController {
     @Autowired
-    private Product_impl productService;
+    private Product_Service productService;
     @Autowired
-    private Category_impl categoryImpl;
+    private Category_Service categoryImpl;
 
     @PostMapping("/add")
     @PreAuthorize("hasRole('ADMIN')")

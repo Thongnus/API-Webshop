@@ -4,6 +4,7 @@ import com.example.api.Entity.Role;
 import com.example.api.Entity.User;
 import com.example.api.Model.changepassword;
 import com.example.api.Service.Serviceimpl.User_impl;
+import com.example.api.Service.User_Service;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -25,7 +26,7 @@ import java.util.Set;
 @RequestMapping("/admin/users")
 public class quanlyuserController {
     @Autowired
-    User_impl userservice;
+    User_Service userservice;
     @Autowired
     PasswordEncoder passwordEncoder;
     //hien thi phan trang

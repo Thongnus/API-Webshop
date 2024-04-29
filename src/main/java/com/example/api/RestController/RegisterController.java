@@ -4,6 +4,7 @@ import com.example.api.Entity.User;
 import com.example.api.Model.changepassword;
 import com.example.api.Service.Serviceimpl.SmsService;
 import com.example.api.Service.Serviceimpl.User_impl;
+import com.example.api.Service.User_Service;
 import com.twilio.rest.verify.v2.service.Verification;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,7 @@ public class RegisterController {
     @Autowired
     SmsService smsService;
     @Autowired
-    User_impl userImpl;
+    User_Service userImpl;
     String phone;
     @PostMapping("/api/sendOtp")
     public String send(@RequestBody String sdt){

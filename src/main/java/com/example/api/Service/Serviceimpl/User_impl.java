@@ -86,7 +86,7 @@ public class User_impl implements User_Service {
         System.out.println(encodedPassword);
         return userReponsitory.save(user);
     }
-
+    @Override
     public User updatenopassword(User user) {
 
 

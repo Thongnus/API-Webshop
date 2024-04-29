@@ -7,6 +7,7 @@ import com.example.api.Service.Serviceimpl.JwtService;
 import com.example.api.Service.Serviceimpl.SmsService;
 import com.example.api.Service.Serviceimpl.UserServiceimp;
 import com.example.api.Service.Serviceimpl.User_impl;
+import com.example.api.Service.User_Service;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -29,7 +30,7 @@ public class LoginController {
     @Autowired
     JwtService jwtService;
     @Autowired
-    User_impl userImpl;
+    User_Service userImpl;
     @Autowired
     SmsService smsService;
     @Autowired

@@ -15,7 +15,9 @@ public interface User_Service {
 
 User update(User user);
 
-  User findbyId(int id);
+    User updatenopassword(User user);
+
+    User findbyId(int id);
   void deleteuserbyID(int id);
   ArrayList<User> searchbyName(String name);
 }
