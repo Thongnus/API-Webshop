@@ -18,7 +18,7 @@ public interface Product_Reponsitory extends JpaRepository<Product,Integer> {
 
 
     ArrayList<Product> findFirst6By();
-//    @Query("Select u from Product  u where u.title like %?1% and u.category=?2")
+    @Query("Select u from Product  u where u.title like %?1% and u.category=?2")
     ArrayList<Product> findByTitleContaining(String username,Category category);
 
 }
