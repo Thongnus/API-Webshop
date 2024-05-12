@@ -7,13 +7,13 @@
 # You can add other services your application may depend on here, such as a
 # database or a cache. For examples, see the Awesome Compose repository:
 # https://github.com/docker/awesome-compose
-services:
-  server:
-    build:
-      context: .
-    ports:
-      - 11:11
-
+# services:
+#   server:
+#     build:
+#       context: .
+#     ports:
+#       - 11:11
+#   be:
 # The commented out section below is an example of how to define a PostgreSQL
 # database that your application can use. `depends_on` tells Docker Compose to
 # start the database before your application. The `db-data` volume persists the
@@ -46,4 +46,35 @@ services:
 # secrets:
 #   db-password:
 #     file: db/password.txt
+version: '3'
+services:
+  spring-boot-app:
+    image: backend-spring
+    ports:
+      - "8085:8080"
+    depends_on:
+      - mysql-db
+    environment:  
+     
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/projectbanhang?createDatabaseIfNotExist=true
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: 1
+      SPRING_JPA_PROPERTIES_HIBERNATE_FORMAT_SQL: 'true'
+      SPRING_JPA_SHOW_SQL: 'true'
+      SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT: 'org.hibernate.dialect.MySQL8Dialect'
+      SPRING_JPA_HIBERNATE_DDL_AUTO: 'create'
+  mysql-db:
+    image: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: 1
+      MYSQL_DATABASE: projectbanhang
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: 123456
+    ports:
+      - "3307:3306"
+    volumes:
+    - app-data:/var/lib/mysql  
+volumes:
+     app-data:
+
 

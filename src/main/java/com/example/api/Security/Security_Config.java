@@ -26,43 +26,43 @@ import org.springframework.web.filter.CorsFilter;
 public class Security_Config {
     @Autowired
     JwtAuthenticationFilter jwtAuthenticationFilter;
+
     @Bean
-    BCryptPasswordEncoder passwordEncoder(){
-        return   new BCryptPasswordEncoder();
+    BCryptPasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 
     @Bean
     AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception {
         return configuration.getAuthenticationManager();
     }
+
     @Bean
-    DaoAuthenticationProvider daoAuthenticationProvider(UserServiceimp userServiceimp){
+    DaoAuthenticationProvider daoAuthenticationProvider(UserServiceimp userServiceimp) {
         DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
         authenticationProvider.setUserDetailsService(userServiceimp);
         authenticationProvider.setPasswordEncoder(passwordEncoder());
         return authenticationProvider;
     }
+
     @Bean
-    SecurityFilterChain securityFilterChain(HttpSecurity http) throws  Exception{
+    SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(AbstractHttpConfigurer::disable)
 
-                .authorizeHttpRequests(ath->ath
+                .authorizeHttpRequests(ath -> ath
                         .requestMatchers("/webjars").permitAll()
                         .requestMatchers("/webjars/**", "/css/**", "/js/**", "/images/**").permitAll()
-                        .requestMatchers("/login").permitAll()
-                        .requestMatchers("//api-feedback/update_feedback/**").hasRole("ADMIN")
-                        .requestMatchers("//api-feedback/delete/**").hasRole("ADMIN")
+
                         .anyRequest().permitAll())
-                .logout(l->l.clearAuthentication(true)
+                .logout(l -> l.clearAuthentication(true)
                         .deleteCookies("jwtToken")
                         .logoutUrl("/logout")
-                        .invalidateHttpSession(true)
-                        )
-                //khong tao phien lam viec cua session
-                .sessionManagement(manager->manager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class );
+                        .invalidateHttpSession(true))
+                // khong tao phien lam viec cua session
+                .sessionManagement(manager -> manager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
-        return  http.build();
+        return http.build();
     }
 
 }
