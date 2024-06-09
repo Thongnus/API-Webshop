@@ -54,26 +54,34 @@ services:
       - "8085:8080"
     depends_on:
       - mysql-db
+   # develop là quá trình phát hiện thay đổi , sẽ tự động build lại container  
+    develop:
+     watch:
+       - action: rebuild
+       - path: .
     environment:  
      
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/projectbanhang?createDatabaseIfNotExist=true
-      SPRING_DATASOURCE_USERNAME: root
-      SPRING_DATASOURCE_PASSWORD: 1
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3307/projectbanhang?createDatabaseIfNotExist=true
+      SPRING_DATASOURCE_USERNAME: admin
+      SPRING_DATASOURCE_PASSWORD: 123456
       SPRING_JPA_PROPERTIES_HIBERNATE_FORMAT_SQL: 'true'
       SPRING_JPA_SHOW_SQL: 'true'
       SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT: 'org.hibernate.dialect.MySQL8Dialect'
-      SPRING_JPA_HIBERNATE_DDL_AUTO: 'create'
+      SPRING_JPA_HIBERNATE_DDL_AUTO: 'none'
   mysql-db:
     image: mysql
     environment:
       MYSQL_ROOT_PASSWORD: 1
-      MYSQL_DATABASE: projectbanhang
+      MYSQL_DATABASE: projectbanhang?createDatabaseIfNotExist
       MYSQL_USER: admin
       MYSQL_PASSWORD: 123456
     ports:
       - "3307:3306"
+    restart: 
+      always
     volumes:
     - app-data:/var/lib/mysql  
+    
 volumes:
      app-data:
 

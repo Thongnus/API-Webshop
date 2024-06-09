@@ -13,6 +13,7 @@ public class EmailRest {
     private EmailService emailService;
 
     @PostMapping("/send-email")
+
     public void sendEmail(@RequestBody Email email) {
         emailService.sendMail(email);
     }

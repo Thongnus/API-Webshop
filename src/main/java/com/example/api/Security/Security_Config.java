@@ -52,7 +52,7 @@ public class Security_Config {
                 .authorizeHttpRequests(ath -> ath
                         .requestMatchers("/webjars").permitAll()
                         .requestMatchers("/webjars/**", "/css/**", "/js/**", "/images/**").permitAll()
-
+                        .requestMatchers("/login").permitAll()
                         .anyRequest().permitAll())
                 .logout(l -> l.clearAuthentication(true)
                         .deleteCookies("jwtToken")
@@ -64,5 +64,5 @@ public class Security_Config {
 
         return http.build();
     }
-//oke
+    // oke
 }
