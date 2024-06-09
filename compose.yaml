@@ -61,7 +61,7 @@ services:
        - path: .
     environment:  
      
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3307/projectbanhang?createDatabaseIfNotExist=true
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/projectbanhang?createDatabaseIfNotExist=true
       SPRING_DATASOURCE_USERNAME: admin
       SPRING_DATASOURCE_PASSWORD: 123456
       SPRING_JPA_PROPERTIES_HIBERNATE_FORMAT_SQL: 'true'
