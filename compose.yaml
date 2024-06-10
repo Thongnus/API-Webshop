@@ -49,18 +49,21 @@
 version: '3'
 services:
   spring-boot-app:
-    image: backend-spring
+    build:
+      context: .
+      dockerfile: Dockerfile
+    # image: backend-spring
     ports:
       - "8085:8080"
     depends_on:
       - mysql-db
-   # develop là quá trình phát hiện thay đổi , sẽ tự động build lại container  
-    develop:
-     watch:
-       - action: rebuild
-       - path: .
-    environment:  
-     
+    # develop là quá trình phát hiện thay đổi , sẽ tự động build lại container
+#    develop:
+#      watch:
+#        - action: rebuild
+#        - path: .
+    environment:
+
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/projectbanhang?createDatabaseIfNotExist=true
       SPRING_DATASOURCE_USERNAME: admin
       SPRING_DATASOURCE_PASSWORD: 123456
@@ -77,12 +80,12 @@ services:
       MYSQL_PASSWORD: 123456
     ports:
       - "3307:3306"
-    restart: 
+    restart:
       always
     volumes:
-    - app-data:/var/lib/mysql  
-    
+      - app-data:/var/lib/mysql
+
 volumes:
-     app-data:
+  app-data:
 
 
